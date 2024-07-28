@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>Welcome to the Student Management System</h1>
+    <div sec:authorize="isAuthenticated()">
+        <p>Welcome, <span sec:authentication="name"></span>!</p>
+        <p>Your roles: <span sec:authentication="principal.authorities"></span></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout" />
+        </form>
+    </div>
+    <div sec:authorize="!isAuthenticated()">
+        <p>You are not logged in. <a th:href="@{/login}">Login</a></p>
+    </div>
+</body>
+
+</html>
