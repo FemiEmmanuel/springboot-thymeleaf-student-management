@@ -13,8 +13,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-// @PrimaryKeyJoinColumn(name = "user_id")
-
 public class Student extends User {
 
     @Column
@@ -24,8 +22,38 @@ public class Student extends User {
     private String lastName;
 
     @Column
-    private int age;
+    private String dateOfBirth;
+
+    @Column
+    private String address;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Column(unique = true)
+    private String matricNumber;
+
+    @Column
+    private String phoneNumber;
+
+    @Column
+    private String nationality;
+
+    @Column
+    private String emergencyContact;
+
+    @Column
+    private String major;
+
+    @Column
+    private double gpa;
 
     @OneToMany(mappedBy = "student")
     private Set<Enrollment> enrollments = new HashSet<>();
+
+    public enum Gender {
+        MALE,
+        FEMALE
+    }
 }
+

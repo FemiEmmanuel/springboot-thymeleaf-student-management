@@ -13,7 +13,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-// @PrimaryKeyJoinColumn(name = "user_id")
 
 public class Instructor extends User {
 
@@ -23,7 +22,7 @@ public class Instructor extends User {
     @Column
     private String lastName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     private Department department;
 
